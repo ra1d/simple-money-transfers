@@ -1,0 +1,33 @@
+logging:
+  level: INFO
+  loggers:
+    com.shcheglov.task: DEBUG
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+  appenders:
+    - type: console
+    - type: file
+      currentLogFilename: './logs/simple_money_transfers-test.log'
+      archive: false
+
+server:
+  applicationContextPath: /
+  adminContextPath: /admin
+  registerDefaultExceptionMappers: false
+  applicationConnectors:
+    - type: http
+      port: 0
+  adminConnectors:
+    - type: http
+      port: 0
+
+database:
+  driverClass: org.h2.Driver
+  url: jdbc:h2:mem:smtdb-test;DATABASE_TO_UPPER=false
+  user: sa
+  password:
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.H2Dialect
+    hibernate.hbm2ddl.auto: create-drop
+    hibernate.hbm2ddl.import_files: init_data.sql
